@@ -1,6 +1,16 @@
 @rooturl = http://localhost:3000
 
 ### Auth
+# @name signUp
+POST {{rooturl}}/auth/signup
+Content-Type: application/json
+
+{
+	"username": "nascarsayan",
+	"password": "Yukino#8man"
+}
+
+###
 # @name signIn
 POST {{rooturl}}/auth/signin
 Content-Type: application/json
@@ -13,10 +23,6 @@ Content-Type: application/json
 ###
 @token = {{signIn.response.body.$.accessToken}}
 ###
-POST {{rooturl}}/auth/test
-Authorization: Bearer {{token}}
-###
-
 GET {{rooturl}}/tasks
 	?dummy=dummy
 	# &status=DONE
@@ -26,18 +32,21 @@ Authorization: Bearer {{token}}
 ###
 # @name createTask
 POST {{rooturl}}/tasks
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-	"title": "Jello 3",
+	"title": "holla 2",
 	"description": "Innovate a classy business idea"
 }
 ###
 @taskId = {{createTask.response.body.$.id}}
 ###
 GET {{rooturl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
 ###
 PATCH {{rooturl}}/tasks/{{taskId}}/status
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
