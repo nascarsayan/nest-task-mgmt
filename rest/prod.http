@@ -1,8 +1,9 @@
 @rooturl = http://localhost:3000
 ###
 GET {{rooturl}}/tasks
-	?status=mone
-	# ?search=Hel
+	?dummy=dummy
+	# &status=DONE
+	&search=busi
 
 ###
 # @name createTask
@@ -22,7 +23,7 @@ PATCH {{rooturl}}/tasks/{{taskId}}/status
 Content-Type: application/json
 
 {
-	"status": "open"
+	"status": "done"
 }
 ###
 DELETE {{rooturl}}/tasks/{{taskId}}
