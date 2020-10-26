@@ -27,3 +27,19 @@ Content-Type: application/json
 }
 ###
 DELETE {{rooturl}}/tasks/{{taskId}}
+
+### Auth
+# @name signIn
+POST {{rooturl}}/auth/signin
+Content-Type: application/json
+
+{
+	"username": "nascarsayan",
+	"password": "Yukino#8man"
+}
+
+###
+@token = {{signIn.response.body.$.accessToken}}
+###
+POST {{rooturl}}/auth/test
+Authorization: Bearer {{token}}
