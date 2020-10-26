@@ -1,0 +1,28 @@
+@rooturl = http://localhost:3000
+###
+GET {{rooturl}}/tasks
+	?status=mone
+	# ?search=Hel
+
+###
+# @name createTask
+POST {{rooturl}}/tasks
+Content-Type: application/json
+
+{
+	"title": "Jello 3",
+	"description": "Innovate a classy business idea"
+}
+###
+@taskId = {{createTask.response.body.$.id}}
+###
+GET {{rooturl}}/tasks/{{taskId}}
+###
+PATCH {{rooturl}}/tasks/{{taskId}}/status
+Content-Type: application/json
+
+{
+	"status": "open"
+}
+###
+DELETE {{rooturl}}/tasks/{{taskId}}
